@@ -27,7 +27,15 @@ def get_recipes
 end
 
 def get_recipe(id)
+  query = 'SELECT recipes.name AS recipe, recipes.instructions as instructions, recipes.description AS description, ingredients.id, ingredients.name AS ingredient
+    FROM recipes
+    JOIN ingredients ON recipes.id = ingredients.recipe_id
+    WHERE recipes.id = $1;'
 
+  recipe = db_connection do |conn|
+      conn.exec_params(query, [id])
+  end
+  recipe
 end
 
 
@@ -43,6 +51,7 @@ get '/recipes' do
   erb :'recipes/index', locals: {recipes: recipes}
 end
 
-get 'recipes/:id' do
-  erb :'recipes/show'
+get '/recipes/:id' do
+  recipe = get_recipe(params[:id])
+  erb :'recipes/show', locals: {recipe: recipe}
 end
