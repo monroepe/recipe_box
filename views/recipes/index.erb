@@ -7,3 +7,12 @@
     </li>
     <%end%>
   </ul>
+
+<div>
+  <% if !on_first_page?(@page_num) %>
+    <a href="/recipes?page=<%= @page_num - 1 %>">Previous</a>
+  <% end %>
+  <% if on_last_page?(@page_num) %>
+    <a href="/recipes?page=<%= @page_num + 1 %>">Next</a>
+  <% end %>
+</div>

@@ -15,13 +15,13 @@ def db_connection
 end
 
 
-def get_recipes
+def get_recipes(page_num)
   query = 'SELECT recipes.id, recipes.name
     FROM recipes
-    ORDER BY recipes.name;'
+    ORDER BY recipes.name LIMIT 20 OFFSET $1;'
 
   recipes = db_connection do |conn|
-      conn.exec(query)
+      conn.exec_params(query, [(@page_num - 1) * 20])
   end
   recipes
 end
@@ -38,8 +38,15 @@ def get_recipe(id)
   recipe
 end
 
+helpers do
+  def on_last_page?(page_num)
+    page_num < 32
+  end
 
-
+  def on_first_page?(page_num)
+    page_num == 1
+  end
+end
 
 
 get '/' do
@@ -47,7 +54,13 @@ get '/' do
 end
 
 get '/recipes' do
-  recipes = get_recipes
+  if params[:page]
+    @page_num = params[:page].to_i
+  else
+    @page_num = 1
+  end
+
+  recipes = get_recipes(@page_num)
   erb :'recipes/index', locals: {recipes: recipes}
 end
 
