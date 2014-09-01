@@ -18,6 +18,7 @@ end
 def get_recipes(page_num)
   query = 'SELECT recipes.id, recipes.name
     FROM recipes
+    WHERE recipes.instructions IS NOT NULL
     ORDER BY recipes.name LIMIT 20 OFFSET $1;'
 
   recipes = db_connection do |conn|
