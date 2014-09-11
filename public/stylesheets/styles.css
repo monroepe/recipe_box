@@ -1,0 +1,29 @@
+body {
+  color: #FFFFFF;
+  background-color: #AC3C3C;
+}
+
+a,
+a:visited {
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+.container {
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+.top-bar {
+  background-color: #3C3C3C;
+}
+
+.logo {
+  display: inline-block;
+  margin: 1em 0;
+  padding-right: 20px;
+}
+
+.search_form{
+  color: black;
+}

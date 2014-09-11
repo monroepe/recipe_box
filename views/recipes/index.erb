@@ -1,5 +1,4 @@
 <h1>Recipes</h1>
-
   <ul>
     <% recipes.each do |recipe| %>
     <li><a href="/recipes/<%= recipe['id']%>">
@@ -16,3 +15,8 @@
     <a href="/recipes?page=<%= @page_num + 1 %>">Next</a>
   <% end %>
 </div>
+
+<br>
+<form class = "search">Search:
+<input type="text" placeholder="Search..." name="search" maxlength="100" size = "30">
+</form>

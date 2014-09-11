@@ -69,3 +69,9 @@ get '/recipes/:id' do
   recipe = get_recipe(params[:id])
   erb :'recipes/show', locals: {recipe: recipe}
 end
+
+get '/search' do
+  erb :'search/index'
+end
+
+

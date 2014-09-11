@@ -3,12 +3,20 @@
   <head>
     <meta charset="utf-8">
     <title>Recipe Box</title>
-
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/stylesheets/normalize.css" />
+    <link rel="stylesheet" href="/stylesheets/styles.css" />
   </head>
   <body>
+<div class="top-bar">
+  <div class="container">
+    <a class="logo" href="/">Recipe Box</a>
+    <a class="logo" href="/search">Search</a>
+  </div>
+</div>
 
-    <%= yield %>
+<div class="container">
+  <%= yield %>
+</div>
 
-  </body>
+</body>
 </html>
